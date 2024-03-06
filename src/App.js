@@ -13,8 +13,10 @@ export function App(params) {
 
   const getCustomers =  function(){
     log("in getCustomers()");
-    
+    setCustomers(getAll());
   }
+
+  const [nameError, setNameError] = useState("");
 
   const handleListClick = function(item){//this controls what is selected
     log("in handleListClick()");
