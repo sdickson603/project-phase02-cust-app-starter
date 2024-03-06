@@ -1,51 +1,37 @@
-import React, {useState} from 'react';
-import customers from './memdb.js'
-import'./App.css'; //allows for being able to reference styles
+import React, {useState, useEffect} from 'react';
+import './App.css';
+import { getAll, post, put, deleteById } from './memdb.js'
 
 function log(message){console.log(message);}
 
 export function App(params) {
   let blankCustomer = { "id": -1, "name": "", "email": "", "password": "" };
+  const [customers, setCustomers] = useState([]);
   const [formObject, setFormObject] = useState(blankCustomer);
   let mode = (formObject.id >= 0) ? 'Update' : 'Add';
+  useEffect(() => { getCustomers() }, []);
 
   const getCustomers =  function(){
     log("in getCustomers()");
+    setCustomers(getAll());
   }
 
-  const [customersList,setCustomersList] = useState(customers); //is this needed given lines 12-13?
-
-  const handleListClick = (item) => {
-    if (formObject.id === item.id) {//req 9, clicking on selected record removes the selection
-      setFormObject(blankCustomer);
-    } else {
-      setFormObject(item);
-    }
+  const handleListClick = function(item){
     log("in handleListClick()");
+    setFormObject(item)
   }  
 
   const handleInputChange = function (event) {
-    const { name, value} = event.target;
-    setFormObject(prevState =>
-      ({
-        ...prevState,
-        [name]: value
-      }))
     log("in handleInputChange()");
   }
 
   let onCancelClick = function () {
     log("in onCancelClick()");
+    setFormObject(blankCustomer);
   }
 
-  let onDeleteClick = () => {
-      if (formObject.id >= 0) {//trying to delete the record in the customer list
-          const updatedCustomers = customersList.filter(customer => customer.id !== formObject.id);
-        
-          setCustomersList(updatedCustomers);
-          log("in onDeleteClick()");
-          setFormObject(blankCustomer);
-      }
+  let onDeleteClick = function () {
+    log("in onDeleteClick()");
   }
 
   let onSaveClick = function () {
@@ -55,20 +41,20 @@ export function App(params) {
   return (
     <div>
       <div className="boxed" >
-        <h4>{mode}</h4>
+        <h4>Customer List</h4>
         <table id="customer-list">
           <thead>
             <tr>
               <th>Name</th>
               <th>Email</th>
-              <th>Password</th>
+              <th>Pass</th>
             </tr>
           </thead>
           <tbody>
-            {customersList.map(//referencing new updated list after
+            {customers.map(
               (item, index) => {
-                return (<tr key={item.id} 
-                className={(item.id === formObject.id )?'selected': ''} //Step 14
+                return (<tr key={item.id}
+                className={ (item.id === formObject.id )?'selected': ''}
                 onClick={()=>handleListClick(item)} 
                 >
                   <td>{item.name}</td>
@@ -93,7 +79,6 @@ export function App(params) {
                 type="text"
                 name="name"
                 value={formObject.name}
-                onChange={handleInputChange} //allows this field to be changesd
                 placeholder="Customer Name"
                 required /></td>
             </tr>
@@ -103,7 +88,6 @@ export function App(params) {
                 type="email"
                 name="email"
                 value={formObject.email}
-                onChange={handleInputChange} //allows this field to be changed
                 placeholder="name@company.com" /></td>
             </tr>
             <tr>
@@ -112,7 +96,6 @@ export function App(params) {
                 type="text"
                 name="password"
                 value={formObject.password}
-                onChange={handleInputChange} //allows this field to be changed
                 placeholder="password" /></td>
             </tr>
             <tr className="button-bar">
