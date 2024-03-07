@@ -61,6 +61,7 @@ export function App(params) {
 
   return (
     <div>
+      <h1 className="main-header">Client Database</h1>
       <div className="boxed" >
         <h4>Customer List</h4>
         <table id="customer-list">
