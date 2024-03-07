@@ -1,6 +1,7 @@
 import React from 'react';
 
 function CustomerAddUpdate({ formObject, handleInputChange, onCancelClick, onDeleteClick, onSaveClick, mode }) {
+
   return (
     <div className="boxed">
       <div>
