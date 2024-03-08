@@ -76,6 +76,7 @@ div#root {
 .selected {
     font-weight: bold;
     color: blue;
+    background-color: rgb(0, 204, 255);
 }
 
 table#customer-add-update tbody tr td.label{
