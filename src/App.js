@@ -12,7 +12,7 @@ function App(params) {
   let blankCustomer = { "id": -1, "name": "", "email": "", "password": "" };
   const [customers, setCustomers] = useState([]);
   const [formObject, setFormObject] = useState(blankCustomer);
-  let mode = (formObject.id >= 0) ? 'Update Customer' : 'Add New Customer';//this dymanically changes the heading
+  let mode = (formObject.id >= 0) ? 'Update Customer' : 'Add Customer';//this dymanically changes the heading
   useEffect(() => { getCustomers() }, []);
 
   const getCustomers = function () {
@@ -51,12 +51,12 @@ function App(params) {
     log("in onDeleteClick()");
   }
 
-  const onSaveClick = function () {
+  const onSaveClick = function () { //when the save button is clicked, mode is used to determine if its an add or update
     log("in onSaveClick()");
-    if (mode === 'Add') {
+    if (mode === 'Add Customer') {
       post(formObject);
     }
-    if (mode === 'Update') {
+    if (mode === 'Update Customer') {
       put(formObject.id, formObject);
     }
     setFormObject(blankCustomer);
