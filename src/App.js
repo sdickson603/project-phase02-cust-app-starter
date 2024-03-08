@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import CustomerList from './CustomerList';
-import CustomerAddUpdate from './CustomerAddUpdate';
+import CustomerList from './CustomerList'; //imports the CustomerList JS component
+import CustomerAddUpdate from './CustomerAddUpdate'; //imports the CustomerAddUpdate JS component
 import { getAll, post, put, deleteById } from './memdb.js';
 
 function log(message) {
@@ -12,7 +12,7 @@ function App(params) {
   let blankCustomer = { "id": -1, "name": "", "email": "", "password": "" };
   const [customers, setCustomers] = useState([]);
   const [formObject, setFormObject] = useState(blankCustomer);
-  let mode = (formObject.id >= 0) ? 'Update Customer' : 'Add New Customer';
+  let mode = (formObject.id >= 0) ? 'Update Customer' : 'Add New Customer';//this dymanically changes the heading
   useEffect(() => { getCustomers() }, []);
 
   const getCustomers = function () {
@@ -66,10 +66,10 @@ function App(params) {
     <div>
       <h1 className="main-header">Client Database</h1>
       
-      <CustomerList
+      <CustomerList  //this loads from the customer list file building that structure
         customers={customers}
         formObject={formObject}
-        handleListClick={handleListClick}
+        handleListClick={handleListClick} 
       />
       <CustomerAddUpdate
         formObject={formObject}
@@ -79,7 +79,7 @@ function App(params) {
         onSaveClick={onSaveClick}
         mode={mode}
       />
-      <div className="logo-container"> 
+      <div className="logo-container">
         <div style={{ width: '100%', height: 0, paddingBottom: '48%', position: 'relative' }}>
           <iframe src="https://giphy.com/embed/2Xivj1ssDH0KgtTp86" width="100%" height="100%" style={{ position: 'absolute' }} frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
       </div>
