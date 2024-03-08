@@ -53,7 +53,7 @@ function App(params) {
 
   const onSaveClick = function () { //when the save button is clicked, mode is used to determine if its an add or update
     log("in onSaveClick()");
-    if (mode === 'Add Customer') {
+    if (mode === 'Add Customer') {//had to update this to add customer because of the changes i made to mode in constant function
       post(formObject);
     }
     if (mode === 'Update Customer') {
