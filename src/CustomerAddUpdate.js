@@ -2,7 +2,7 @@ import React from 'react';
 
 function CustomerAddUpdate({ formObject, handleInputChange, onCancelClick, onDeleteClick, onSaveClick, mode }) {
 
-  return (
+  return (//this renders the customer-add-update form and makes it available (export) for the app to use
     <div className="boxed">
       <div>
         <h4>{mode}</h4>

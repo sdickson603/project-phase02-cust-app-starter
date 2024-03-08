@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CustomerList({ customers, formObject, handleListClick }) {
+function CustomerList({ customers, formObject, handleListClick }) {//now that this is broken out from the app this will render the table showing the customers
   return (
     <div className="boxed">
       <h4>Customer List</h4>
