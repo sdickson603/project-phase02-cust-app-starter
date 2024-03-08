@@ -18,6 +18,11 @@ table {
     font-family: monospace;
 }
 
+th {
+    text-align: center;
+    font-style: italic;
+}
+
 input[type='text'], input[type='email']{
     width: 95%;
 }
@@ -43,6 +48,7 @@ form{
 div#root {
     background-color: lightgrey;
     width: 350px;
+    margin: 0 auto;
 }
 
 .boxed {
@@ -69,6 +75,7 @@ div#root {
 
 .selected {
     font-weight: bold;
+    color: blue;
 }
 
 table#customer-add-update tbody tr td.label{
@@ -83,4 +90,15 @@ table#customer-add-update tbody tr td.label{
 
 .main-header {
     text-align: center;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+.label {
+    text-align: right;
+    font-weight: bold;
 }
